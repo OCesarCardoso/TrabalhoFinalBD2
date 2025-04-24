@@ -188,7 +188,7 @@ INSERT INTO desenvolvedor (nome, qtd_jogos_plataforma, area_de_desenvolvimento, 
 ('Carla Mendes', 4, 'Animação', 'Mojang Studios');
 
 -- INSERTS PARA TABELA JOGABILIDADE
-INSERT INTO jogabilidade (horas_jogadas, avaliacao, data_avaliacao, id_jogo, id_usuario) VALUES
+INSERT INTO jogabilidade (horas_jogadas, avaliacao, data_avaliacao, fk_id_jogo, fk_id_usuario) VALUES
 (120.5, 9.5, '2023-02-10', 1, 1),
 (85.2, 8.0, '2023-03-05', 2, 2),
 (200.0, 9.0, '2023-04-15', 3, 3),
