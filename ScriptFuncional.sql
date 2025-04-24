@@ -282,6 +282,9 @@ BEGIN
 END //
 DELIMITER ;
 
+-- Exemplo de uso:
+-- CALL adicionar_saldo(1, 50.00);
+-- SELECT saldo FROM usuario WHERE id_usuario = 1;
 
 -- Aplicar Desconto em Jogos Antigos
 DELIMITER //
@@ -301,6 +304,9 @@ BEGIN
 END //
 DELIMITER ;
 
+-- Exemplo de uso:
+-- CALL aplicar_desconto_jogos_antigos(2, 30); -- 30% de desconto em jogos com mais de 2 anos
+-- SELECT nome, preco FROM jogo WHERE data_lancamento < DATE_SUB(CURDATE(), INTERVAL 2 YEAR);
 
 -- Transferência de Saldo entre Usuários
 DELIMITER //
@@ -338,6 +344,9 @@ BEGIN
 END //
 DELIMITER ;
 
+-- Exemplo de uso:
+-- CALL transferir_saldo(1, 2, 25.00);
+-- SELECT id_usuario, nickname, saldo FROM usuario WHERE id_usuario IN (1, 2);
 
 -- Top 10 jogos mais vendidos
 DELIMITER $$
@@ -353,6 +362,9 @@ BEGIN
     LIMIT 10;
 END $$
 DELIMITER ;
+
+-- Exemplo de uso:
+-- CALL top10_jogos_mais_vendidos();
 
 -- ********************************** FUNCTIONS **********************************  
 
@@ -501,6 +513,12 @@ LEFT JOIN jogabilidade ja ON j.id_jogo = ja.id_jogo
 GROUP BY j.id_jogo, j.nome, j.genero, j.preco, j.qtd_vendida
 ORDER BY j.qtd_vendida DESC, media_avaliacao DESC;
 
+-- Exemplo de uso:
+-- SELECT * FROM vw_jogos_populares 
+-- WHERE genero = 'Ação' 
+-- ORDER BY media_avaliacao DESC 
+-- LIMIT 5;
+
 
 -- View de jogos por gênero
 CREATE VIEW vw_jogos_por_genero AS
@@ -514,6 +532,10 @@ FROM jogo
 GROUP BY genero
 ORDER BY receita_total DESC;
 
+-- Exemplo de uso:
+-- SELECT * FROM vw_jogos_por_genero 
+-- WHERE total_vendas > 1000 
+-- ORDER BY preco_medio ASC;
 
 -- View de jogos por faixa etária
 CREATE VIEW vw_jogos_por_faixa_etaria AS
@@ -534,6 +556,11 @@ ORDER BY
         WHEN '18+' THEN 5
         ELSE 6
     END;
+    
+-- Exemplo de uso:
+-- SELECT * FROM vw_jogos_por_faixa_etaria 
+-- WHERE quantidade_jogos > 5 
+-- ORDER BY receita_total DESC;
 
 -- ********************************** USERS E ROLES ********************************** 
 
